@@ -5,7 +5,7 @@ const {template} = lodash;
 import {loadPlugins} from "./helpers/plugins.js";
 import {Config} from "./definitions/config.js";
 
-import getGitAuthUrl from 'semantic-release/lib/get-git-auth-url.js';
+import getGitAuthUrl from './helpers/get-git-auth-url.js';
 import {Context} from "semantic-release";
 
 async function performBackmergeIntoBranch(git: Git, _pluginConfig: Partial<Config>, context: Context, options: Config, developBranchName: string) {

@@ -120,7 +120,7 @@ export default class Git {
      * @throws {Error} if the config failed.
      */
     async configFetchAllRemotes() {
-        await this.runGitCommand(['config', 'remote.origin.fetch', '+refs/heads/*:refs/remotes/origin/*'], false)
+        await this.runGitCommand(['config', '--add', 'remote.origin.fetch', '+refs/heads/*:refs/remotes/origin/*'], false)
     }
 
     /**
