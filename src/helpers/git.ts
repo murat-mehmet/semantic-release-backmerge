@@ -131,7 +131,7 @@ export default class Git {
      * @throws {Error} if the checkout failed.
      */
     async checkout(branch: string) {
-        await this.runGitCommand(['checkout', '-B', branch], false);
+        await this.runGitCommand(['checkout', branch], false);
     }
 
     /**
