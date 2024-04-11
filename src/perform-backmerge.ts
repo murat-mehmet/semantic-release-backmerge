@@ -30,6 +30,8 @@ async function performBackmergeIntoBranch(git: Git, _pluginConfig: Partial<Confi
         await git.checkout(releaseBranchName);
         context.logger.log(`Checking out develop branch "${developBranchName}".`);
         await git.checkout(developBranchName);
+        context.logger.log(`Pulling latest changes from develop branch "${developBranchName}".`);
+        await git.pull('origin', developBranchName);
         context.logger.log(`Performing backmerge with "${options.backmergeStrategy}" strategy.`);
         if (options.backmergeStrategy === 'merge') {
             await git.merge(releaseBranchName, options.mergeMode, options.fastForwardMode);
@@ -127,6 +129,9 @@ export async function performBackmerge(git: Git, pluginConfig: Partial<Config>, 
             break
         }
     }
+
+    context.logger.log(`Checking out back to branch "${context.branch.name}".`);
+    await git.checkout(context.branch.name);
 
     if (options.restoreWorkspace) {
         context.logger.log('Restoring stashed files to Git workspace.');

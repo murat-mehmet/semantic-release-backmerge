@@ -115,6 +115,16 @@ export default class Git {
     }
 
     /**
+     * Pull commits from the remote repository.
+     *
+     * @throws {Error} if the fetch failed.
+     */
+    async pull(remote: string, branch: string) {
+        const args = ['pull', remote, branch];
+        await this.runGitCommand(args, false)
+    }
+
+    /**
      * Configures Git to fetch all references
      *
      * @throws {Error} if the config failed.
