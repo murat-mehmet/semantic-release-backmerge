@@ -179,7 +179,7 @@ export default class Git {
      *
      * @throws {Error} if the merge failed.
      */
-    async merge(branch: string, mergeMode: MergeMode = 'none', fastForwardMode: FastForwardMode = "none") {
+    async merge(branch: string, mergeMode: MergeMode = 'none', fastForwardMode: FastForwardMode = "none", message: string) {
         const args = ['merge']
         if (mergeMode !== 'none') {
             args.push('-X' + mergeMode)
@@ -187,7 +187,10 @@ export default class Git {
         if (fastForwardMode !== 'none') {
             args.push('--' + fastForwardMode)
         }
-        args.push('origin/' + branch)
+        args.push(branch)
+
+        args.push('-m');
+        args.push(message);
         await this.runGitCommand(args);
     }
 }

@@ -34,7 +34,11 @@ async function performBackmergeIntoBranch(git: Git, _pluginConfig: Partial<Confi
         await git.pull('origin', developBranchName);
         context.logger.log(`Performing backmerge with "${options.backmergeStrategy}" strategy.`);
         if (options.backmergeStrategy === 'merge') {
-            await git.merge(releaseBranchName, options.mergeMode, options.fastForwardMode);
+
+            let message = options.message;
+            message = template(message)({branch: branch, lastRelease, nextRelease});
+
+            await git.merge(releaseBranchName, options.mergeMode, options.fastForwardMode, message);
         } else {
             try {
                 await git.rebase(releaseBranchName)
