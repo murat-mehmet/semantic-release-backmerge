@@ -1,7 +1,7 @@
 {
   "name": "@mmbt/semantic-release-backmerge",
   "description": "semantic-release plugin to back-merge a release into a develop branch",
-  "version": "4.0.7",
+  "version": "4.0.8",
   "author": "Mario Lubenka",
   "license": "MIT",
   "type": "module",
